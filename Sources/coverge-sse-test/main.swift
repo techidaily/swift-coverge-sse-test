@@ -1,8 +1,13 @@
 
 // TODO: Test QRCode Login
 
-import CryptoSwift
 import Foundation
+import CryptoSwift
+
+// -> Swift - SwiftyJSON的使用详解（附样例，用于JSON数据处理
+// -> see: https://www.hangge.com/blog/cache/detail_968.html
+// -> see: https://github.com/SwiftyJSON/SwiftyJSON
+import SwiftyJSON
 
 
 struct CIAppSetting {
@@ -40,8 +45,9 @@ func getInterceptorsForRequest(url: String, options: Any) -> Any {
     return ""
 }
 
-func transfer(params: Any) -> Any {
-    return "";
+func transfer(params: Any) -> JSON {
+    let json: JSON = nil;
+    return json;
 }
 
 
