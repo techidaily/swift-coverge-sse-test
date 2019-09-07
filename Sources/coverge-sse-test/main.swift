@@ -67,7 +67,8 @@ func testURLSession() {
         
         let dataTask = URLSession.shared.dataTask(with: request,
                             completionHandler: {(data, response, error) -> Void in
-                            willExit = true
+                                print("URLSeesion call ...")
+                                
                                 if error != nil{
                                     print(error)
                                 }else{
@@ -77,6 +78,7 @@ func testURLSession() {
                                         print("第一个联系人的第一个电话号码：",number)
                                     }
                                 }
+                                willExit = true
         }) as URLSessionTask
         
         //使用resume方法启动任务
