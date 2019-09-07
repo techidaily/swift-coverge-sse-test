@@ -41,20 +41,58 @@ func getSign(dataStr: String, TimeStampStr: String) -> String {
      "\(GCSetting.AppSetting.AppSecret)").md5()
 }
 
-func getInterceptorsForRequest(url: String, options: Any) -> Any {
-    return ""
+func getInterceptorsForRequest(url: String, options: Any) -> Void {
+    // let jsonOptions = try! JSON(data: options!)
+    
+    // return jsonOptions
 }
 
 func transfer(params: Any) -> JSON {
-    let json: JSON = nil;
-    return json;
+    let json: JSON = nil
+    return json
 }
 
+func installEventSource() {
+
+}
+
+var willExit = false
+
+func testURLSession() {
+    do {
+        //创建URL对象
+        let url = URL(string:"http://www.hangge.com/getJsonData.php")
+        //创建请求对象
+        let request = URLRequest(url: url!)
+        
+        let dataTask = URLSession.shared.dataTask(with: request,
+                            completionHandler: {(data, response, error) -> Void in
+                            willExit = true
+                                if error != nil{
+                                    print(error)
+                                }else{
+                                    let json = try! JSON(data: data!)
+                                    if let number = json[0]["phones"][0]["number"].string {
+                                        // 找到电话号码
+                                        print("第一个联系人的第一个电话号码：",number)
+                                    }
+                                }
+        }) as URLSessionTask
+        
+        //使用resume方法启动任务
+        dataTask.resume()
+    } catch {
+        print("发现Error")
+    }
+}
 
 
 func main() {
     let content = "Hello, world!"
     print("\(content)", content.md5())
+    print(getSign(dataStr:"Hi,1111", TimeStampStr:"09823423243"))
+    testURLSession()
+    while (!willExit){}
 }
 
 // run
